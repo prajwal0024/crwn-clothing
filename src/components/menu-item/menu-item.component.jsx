@@ -1,13 +1,14 @@
 import React from "react"
 import "./menu-item.styles.scss"
+//Router
 import { withRouter } from "react-router-dom"
 
 const MenuItem = ({ title, imageUrl, size, linkUrl, history, match }) => (
   <div
-    className={`${size} menu-item`}
-    onClick={() => history.push(`${match.url}${linkUrl}`)}
+    className={`${size} menu-item`} //Size for the two larger section
+    onClick={() => history.push(`${match.url}${linkUrl}`)} //match.url = \ linkUrl = hats
   >
-    <div
+    <div //for background image
       className="background-image"
       style={{
         backgroundImage: `url(${imageUrl})`,

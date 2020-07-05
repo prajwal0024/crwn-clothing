@@ -1,14 +1,14 @@
 import React from "react"
+import "./sign-up.styles.scss"
+//Firebase
+import { auth, createUserProfileDocument } from "../../firebase/firebase.utils"
+//Components
 import FormInput from "../form-input/form-input.component"
 import CustomButton from "../custom-button/custom-button.component"
-import { auth, createUserProfileDocument } from "../../firebase/firebase.utils"
-
-import "./sign-up.styles.scss"
 
 class SignUp extends React.Component {
   constructor() {
     super()
-
     this.state = {
       displayName: "",
       email: "",
@@ -18,11 +18,11 @@ class SignUp extends React.Component {
   }
 
   handleSubmit = async (event) => {
-    event.preventDefault()
-    const { displayName, email, password, confirmPassword } = this.state
+    event.preventDefault() //to prevent default behaviour of html form
+    const { displayName, email, password, confirmPassword } = this.state //destructuring
 
     if (password !== confirmPassword) {
-      alert("Passwords dont match")
+      alert("Passwords don't match")
       return
     }
 
@@ -32,7 +32,7 @@ class SignUp extends React.Component {
         password
       )
       await createUserProfileDocument(user, { displayName })
-
+      //Clear state and all the fields
       this.setState({
         displayName: "",
         email: "",
@@ -44,7 +44,7 @@ class SignUp extends React.Component {
     }
   }
 
-  handleChange = (event) => {
+  handleChange = (event) => { //When change occur set the state to the new change
     const { name, value } = event.target
     this.setState({ [name]: value })
   }

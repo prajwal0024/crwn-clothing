@@ -2,6 +2,7 @@ import firebase from "firebase/app"
 import "firebase/firestore"
 import "firebase/auth"
 
+//From Firebase
 const config = {
   apiKey: "AIzaSyDMBWmPFsAAkwbOtAtkjZawylxekEuGVgA",
   authDomain: "crwn-db-bd421.firebaseapp.com",
@@ -23,7 +24,7 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
   if (!snapShot.exists) {
     //if user does not exsists
     const { displayName, email } = userAuth //destructing name and email from user
-    const createdAt = new Date()
+    const createdAt = new Date() //generating new date
 
     try {
       await userRef.set({
@@ -43,8 +44,8 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
 export const auth = firebase.auth()
 export const firestore = firebase.firestore()
 
+//Sign in with google
 const provider = new firebase.auth.GoogleAuthProvider()
-
 provider.setCustomParameters({ prompt: "select_account" })
 export const signInWithGoogle = () => auth.signInWithPopup(provider)
 
